@@ -1,0 +1,24 @@
+.App{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* border: 1px solid; */
+  display: flex;
+}
+.leftSideHome{
+  flex: 0.155;
+  padding: 25px 10px;
+  /* border: 1px solid; */
+
+
+}
+.middleSide{
+  flex: 0.5;
+  border-left: 1px solid #e1e1e1;
+
+
+}
+.rightSide{
+  flex: 0.345;
+
+}

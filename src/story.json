@@ -1,0 +1,52 @@
+{
+    "story":[
+        {
+            "name":"Ankit sir",
+            "img":"src/assets/P1.jpg"
+        },
+        {
+            "name":"Ankit sir",
+            "img":"src/assets/P1.jpg"
+        },
+        {
+            "name":"Atharv sir",
+            "img":"src/assets/P2.jpg"
+        },
+        {
+            "name":"Parth sir",
+            "img":"src/assets/P3.jpg"
+        },
+        {
+            "name":"Asmita",
+            "img":"src/assets/P11.jpg"
+        },
+        {
+            "name":"Vishal",
+            "img":"src/assets/P4.jpg"
+        },
+        {
+            "name":"Sandip",
+            "img":"src/assets/P5.jpg"
+        },
+        {
+            "name":"Sejal Tai",
+            "img":"src/assets/P6.jpg"
+        },
+        {
+            "name":"Prachi",
+            "img":"src/assets/P7.jpg"
+        },
+        {
+            "name":"Sakshi",
+            "img":"src/assets/P8.jpg"
+        },
+        {
+            "name":"Nitesh Bhau",
+            "img":"src/assets/P9.jpg"
+        },
+        {
+            "name":"Nayan Bhau",
+            "img":"src/assets/P10.jpg"
+        }
+    ]
+}
