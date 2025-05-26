@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import TableBooking from "./TableBooking";
 
 const HomePage = () => {
   const dishData = [
@@ -20,7 +21,7 @@ const HomePage = () => {
         style={{ backgroundImage: "url(./src/assets/Icons/BB2.jpg)" }}
       >
         <h1 className=" relative text-4xl font-bold text-goldenrod">
-          Welcome to Techinfo HM Restaurant
+          Welcome to Techinfo HM Restaurant  
         </h1>
         <p className="mt-4 text-lg max-w-2xl">
           Experience the finest culinary delights made with passion and served
@@ -65,9 +66,11 @@ const HomePage = () => {
         <p className="mt-4 text-black">
           123 Food Street, Aurangabad, MH | Call: (123)7038526960
         </p>
-        <button className="mt-6 bg-goldenrod text-black px-6 py-2 rounded-lg bg-yellow-500 hover:bg-yellow-700 transition hover:text-white">
-          Book a Table
+       <Link to="/book_table">
+        <button   className="mt-6 bg-goldenrod text-black px-6 py-2 rounded-lg bg-yellow-500 hover:bg-yellow-700 transition hover:text-white">
+          Book a Table 
         </button>
+       </Link>
       </section>
     </div>
   );

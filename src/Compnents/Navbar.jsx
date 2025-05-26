@@ -20,12 +20,18 @@ import { useCart } from "./CartContext"; // Import useCart from context
 
 const navItems = ["Home", "About", "Menu", "Blog", "Contact"];
 
-function Navbar() {
+function Navbar({ setSearchQuery }) {
+  
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { cart } = useCart(); // Get cart from context
+  const [showSearch, setShowSearch] = useState(false); // State to toggle search bar
+  const { cart } = useCart();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
+  };
+
+  const handleSearchClick = () => {
+    setShowSearch((prevState) => !prevState);
   };
 
   const cartCount = cart?.reduce((sum, item) => sum + item.count, 0) || 0;
@@ -33,62 +39,120 @@ function Navbar() {
   return (
     <>
       <AppBar position="fixed" sx={{ backgroundColor: "#222", zIndex: 1100 }}>
-        <Toolbar sx={{ display: "flex", justifyContent: "space-between",alignItems:"center"}}>
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "100%",
+            flex: "1",
+          }}
+        >
           {/* Logo */}
-          <Box sx={{height:"70px",width:"70px", display: "flex", alignItems: "center", flex: "1",padding:"20px"}}>
-            <img
-              src="./src/assets/Icons/logo.png!sw800"
-              alt="HM Restaurant"
-              style={{ height: "50px",width:"50px" }}
-            />
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              flexShrink: 0,
+              width: "20%",
+            }}
+          >
+            <NavLink to="/">
+              <img
+                src="./src/assets/Icons/logo.png"
+                alt="HM Restaurant"
+                style={{
+                  height: "60px",
+                  width: "60px",
+                  objectFit: "contain",
+                  maxWidth: "100%",
+                }}
+              />
+            </NavLink>
           </Box>
 
           {/* Navbar Items - Hidden on Mobile */}
-          <Box sx={{ display: { xs: "none", md: "flex" }, flex: 2, gap: 2 ,alignContent:"center",justifyContent:"center"}}>
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex" },
+              gap: 2,
+              width: { sx: "0", md: "50%" },
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             {navItems.map((item) => (
               <Button
                 key={item}
                 component={NavLink}
                 to={`/${item.toLowerCase()}`}
-                sx={{ color: "#fff", "&:hover": { color: "#ffa500",borderBottom:"solid #ffa500" } }}
+                sx={{
+                  color: "#fff",
+                  "&:hover": {
+                    color: "#ffa500",
+                    borderBottom: "solid #ffa500",
+                  },
+                }}
               >
                 {item}
               </Button>
             ))}
           </Box>
 
-          {/* Icons */}
+          {/* Search Icon (Click to Show Search Bar) */}
           <Box
-            sx={{
-              width: "100%",
-              display: "flex",
-              gap: 1,
-              flex: "1",
-              justifyContent: "flex-end"
-            }}
+            sx={{ position: "relative", display: "flex", alignItems: "center",justifyContent:"left" }}
           >
-            <IconButton color="inherit" sx={{":hover":{backgroundColor:"orangered",transform:"scale(1.1)"}}}>
+            <input
+              type="text"
+              placeholder="Search menu..."
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="border-none rounded px-2 py-1 text-black bg-white w-[100%] sm:w-80 pl-10"
+              style={{ paddingLeft: "40px", height: "30px" }} // Adjust left padding to make space for icon
+            />
+            <IconButton
+              sx={{
+                position: "absolute",
+                color: "gray",
+                overflow: "hidden",
+                position: "absolute",
+              }}
+            >
               <SearchIcon />
             </IconButton>
+          </Box>
 
+          {/* Icons & Mobile Menu */}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+              width: { sx: "23%", md: "3%" },
+              justifyContent: "end",
+            }}
+          >
             <NavLink to="/cart">
-              <IconButton color="inherit" sx={{":hover":{backgroundColor:"red",transform:"scale(1.1)"}}}>
+              <IconButton color="inherit">
                 <Badge badgeContent={cartCount} color="error">
                   <ShoppingCartIcon />
                 </Badge>
               </IconButton>
             </NavLink>
-          </Box>
 
-          {/* Mobile Menu Icon */}
-          <IconButton
-            color="inherit"
-            edge="end"
-            onClick={handleDrawerToggle}
-           sx={{ display: { xs: "flex", md: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
+            {/* Mobile Menu Icon - Positioned in Right Corner */}
+            <IconButton
+              color="inherit"
+              edge="end"
+              onClick={handleDrawerToggle}
+              sx={{
+                display: { xs: "flex", md: "none" },
+                marginLeft: "auto",
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
 
@@ -97,11 +161,9 @@ function Navbar() {
       {/* Mobile Drawer */}
       <Drawer
         anchor="right"
-        variant="temporary"
         open={mobileOpen}
         onClose={handleDrawerToggle}
-        ModalProps={{ keepMounted: true }}
-        sx={{ "& .MuiDrawer-paper": { boxSizing: "border-box", width: 240 } }}
+        sx={{ "& .MuiDrawer-paper": { width: 240 } }}
       >
         <Box sx={{ textAlign: "center", p: 2 }}>
           <List>
@@ -110,10 +172,7 @@ function Navbar() {
                 <ListItemButton
                   component={NavLink}
                   to={`/${item.toLowerCase()}`}
-                  sx={{
-                    textAlign: "center",
-                    "&:hover": { backgroundColor: "rgba(255, 165, 0, 0.2)" },
-                  }}
+                  sx={{ textAlign: "center" }}
                 >
                   <ListItemText primary={item} />
                 </ListItemButton>

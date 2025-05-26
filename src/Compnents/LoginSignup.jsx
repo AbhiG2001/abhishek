@@ -124,7 +124,8 @@ const LoginSignup = () => {
         <Paper sx={{ width: 400, height: 470, bgcolor: "#343434" ,border:"none"}}>
           <img
             className="h-[470px] w-[400px] "
-            src="./src/assets/Icons/contact2.jpg"
+            // src="./src/assets/Icons/contact2.jpg"
+            src="./src/images/contact1.jpg"
             alt="contact_img"
           />
         </Paper>

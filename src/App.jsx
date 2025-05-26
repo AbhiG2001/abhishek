@@ -10,19 +10,26 @@ import Blog from "./Compnents/Blog";
 import Contact from "./Compnents/Contact";
 import CartPage from "./Compnents/CartPage"; // <-- Updated to use new CartPage
 import { CartProvider } from "./Compnents/CartContext"; // <-- Cart context
+import TableBooking from "./Compnents/TableBooking";
+import { useState } from "react";
+// import './App.css'
 
 const App = () => {
+  const [searchQuery, setSearchQuery] = useState("");
   return (
     <CartProvider>
       <Router>
-        <Navbar /> 
+        <Navbar setSearchQuery={setSearchQuery} /> 
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/about" element={<About />} />
-          <Route path="/menu" element={<MenuCollection />} />
+          <Route path="/menu" element={<MenuCollection searchQuery={searchQuery}/>} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<LoginSignup />} />
           <Route path="/cart" element={<CartPage />} /> 
+          <Route path="/book_table" element={<TableBooking/>} /> 
+
         </Routes>
         <Footer />
       </Router>

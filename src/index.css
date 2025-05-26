@@ -1,6 +1,15 @@
 @import "tailwindcss";
-*{
-    /* margin: 0;
-    padding: 0; */
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
+
+    
+
+@font-face {
+  font-family: 'Fonarto';
+  src: url('/fonts/fonarto.ttf') format('truetype');
+  
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'Fonarto', sans-serif !important;
 }

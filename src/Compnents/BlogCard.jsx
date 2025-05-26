@@ -9,7 +9,7 @@ const BlogCard = ({ title, date, summary, image }) => {
         <Typography variant="h6" component="div">{title}</Typography>
         <Typography variant="body2" color="text.secondary">{date}</Typography>
         <Typography variant="body2" sx={{ mt: 1 }}>{summary}</Typography>
-        <Button sx={{ mt: 2 }} variant="contained" color="primary">Read More</Button>
+        {/* <Button sx={{ mt: 2 }} variant="contained" color="primary">Read More</Button> */}
       </CardContent>
     </Card>
   );
